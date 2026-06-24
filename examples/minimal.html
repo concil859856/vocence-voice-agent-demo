@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vocence Voice Agent — Minimal Example</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 640px; margin: 80px auto; padding: 0 20px; color: #222; }
+    code { background: #f3f3f5; padding: 2px 6px; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <h1>Your page</h1>
+  <p>
+    This is the entire integration — the two tags below. The voice agent appears
+    as a floating launcher in the bottom-right corner.
+  </p>
+  <p>
+    Replace <code>YOUR_AGENT_ID</code> and the <code>vet_…</code> token with your
+    own from Vocence Studio, then serve this file over <strong>HTTPS</strong> (or
+    open it via <code>http://localhost</code>) so the microphone works.
+  </p>
+
+  <!-- ───────────────────── Vocence voice agent ─────────────────────
+       1. Load the widget bundle (registers the <vocence-agent> element).
+       2. Drop in the element with your agent id + embed token.
+       No build step, no server config — `voice.vocence.ai` is the default. -->
+  <script src="https://widget.vocence.ai/v1/widget.js" defer></script>
+  <vocence-agent
+      agent-id="YOUR_AGENT_ID"
+      embed-token="vet_REPLACE_ME">
+  </vocence-agent>
+
+  <!-- Optional: theme it to your brand
+  <style>
+    vocence-agent { --voc-accent: #6d5efc; }
+  </style>
+  -->
+</body>
+</html>

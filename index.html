@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vocence Voice Agent — Demo / Template</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="demo.css" />
+
+  <!-- The ONLY Vocence script you need — registers the <vocence-agent> element. -->
+  <script src="https://widget.vocence.ai/v1/widget.js?v=5" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">🎙️</span>
+      <span class="brand-name">Vocence</span>
+      <span class="brand-sub">Real-Time Voice Agent · Demo &amp; Template</span>
+    </div>
+    <div class="top-actions">
+      <span class="pill" id="hostPill">voice.vocence.ai</span>
+      <a class="ghost-link" href="https://vocence.ai" target="_blank" rel="noreferrer">vocence.ai ↗</a>
+    </div>
+  </header>
+
+  <main class="grid">
+    <!-- ── Config column ───────────────────────────────────────────── -->
+    <aside class="col">
+      <div class="col-head">
+        <h2>Configuration</h2><span class="sub">edits apply live</span>
+      </div>
+      <div class="col-body">
+        <div class="group">
+          <span class="group-label">Required</span>
+          <label>Agent ID
+            <input id="agentId" type="text" placeholder="your agent id" />
+          </label>
+          <label>Embed token
+            <input id="embedToken" type="text" placeholder="vet_..." />
+            <small>Mint in Vocence Studio. Scoped to one agent; safe to ship publicly.</small>
+          </label>
+        </div>
+
+        <div class="group">
+          <span class="group-label">Connection</span>
+          <label>Real-time host (<code>server</code>)
+            <input id="server" type="text" value="https://voice.vocence.ai" />
+            <small><b>voice.vocence.ai</b> — the canonical WebSocket host. Keep for production.</small>
+          </label>
+        </div>
+
+        <div class="group">
+          <span class="group-label">Appearance &amp; behavior</span>
+          <div class="row-2">
+            <label>Position
+              <select id="position">
+                <option value="bottom-right">bottom-right</option>
+                <option value="bottom-left">bottom-left</option>
+                <option value="inline">inline</option>
+              </select>
+            </label>
+            <label>Theme
+              <select id="theme">
+                <option value="auto">auto</option>
+                <option value="dark">dark</option>
+                <option value="light">light</option>
+              </select>
+            </label>
+          </div>
+          <div class="row-2">
+            <label>Language
+              <select id="language">
+                <option value="auto">auto</option>
+                <option value="English">English</option>
+                <option value="Spanish">Spanish</option>
+                <option value="French">French</option>
+                <option value="German">German</option>
+                <option value="Hindi">Hindi</option>
+              </select>
+            </label>
+            <label>Accent
+              <input id="accent" type="color" value="#6d5efc" />
+            </label>
+          </div>
+          <label>Greeting line (optional)
+            <input id="greeting" type="text" placeholder="e.g. Ask me anything about pricing" />
+          </label>
+          <label class="check"><input id="voiceEnabled" type="checkbox" checked /> <span>Voice enabled <em>(off = text-only)</em></span></label>
+          <label class="check"><input id="openOnLoad" type="checkbox" /> <span>Open panel on load</span></label>
+        </div>
+      </div>
+      <div class="col-foot">
+        <button id="apply" class="btn primary">Apply &amp; remount</button>
+        <button id="startVoice" class="btn ghost">Start voice</button>
+      </div>
+    </aside>
+
+    <!-- ── Live preview column ─────────────────────────────────────── -->
+    <section class="col">
+      <div class="col-head">
+        <h2>Live preview</h2><span class="sub">talk or type to the agent</span>
+      </div>
+      <div class="stage">
+        <div id="inlineMount" class="inline-mount" hidden></div>
+        <div class="stage-hint">
+          <div class="stage-hint-icon">🎧</div>
+          <p>Click <b>Apply &amp; remount</b>, then use the launcher (floating bottom-right,
+             or the inline panel here when <code>position=inline</code>). Click the mic and
+             <b>allow microphone access</b> to talk.</p>
+        </div>
+      </div>
+      <div class="snippet-card">
+        <div class="snippet-head">
+          <span>Embed snippet</span>
+          <button id="copy" class="btn tiny">Copy</button>
+        </div>
+        <pre id="snippet" class="snippet"></pre>
+      </div>
+    </section>
+
+    <!-- ── Event log column ────────────────────────────────────────── -->
+    <aside class="col">
+      <div class="col-head">
+        <h2>Event log</h2><span class="sub" id="logCount"></span>
+      </div>
+      <div id="log" class="log"><div class="log-row muted">— waiting for events —</div></div>
+    </aside>
+  </main>
+
+  <script src="demo.js"></script>
+</body>
+</html>
